@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<title>AgendaPlus</title>
+	<h:outputStylesheet library="css" name="login.css" />
+</h:head>
+<h:body>
+	<h:form class="box">
+
+		<h1>Cadastro</h1>
+
+		<h:inputText value="#{clienteController.entity.nome}">
+			<f:passThroughAttribute name="placeholder" value="Insira seu nome" />
+		</h:inputText>
+
+		<h:inputText value="#{clienteController.entity.email}">
+			<f:passThroughAttribute name="placeholder" value="Insira seu email" />
+		</h:inputText>
+
+		<h:inputText value="#{clienteController.entity.login}">
+			<f:passThroughAttribute name="placeholder" value="Insira seu login" />
+		</h:inputText>
+
+		<h:inputSecret value="#{clienteController.entity.senha}">
+			<f:passThroughAttribute name="placeholder" value="Insira sua senha" />
+		</h:inputSecret>
+
+		<p:inputMask value="#{clienteController.entity.cpf}"
+			mask="999.999.999-99" validateMask="true">
+			<f:passThroughAttribute name="placeholder" value="Insira seu cpf" />
+		</p:inputMask>
+
+		<p:commandButton value="Incluir"
+			style="margin-left:10px;margin-right:10px;"
+			styleClass="rounded-button ui-button-success"
+			actionListener="#{clienteController.incluir}" update="@form"
+			process="@form" disabled="#{clienteController.entity.id != null}" />
+
+		<p:commandButton value="Limpar"
+			style="margin-left:10px;margin-right:10px;"
+			styleClass="rounded-button ui-button-warning"
+			actionListener="#{clienteController.limpar}" update="@form"
+			process="@this" />
+		<p:commandButton value="Voltar"
+			style="margin-left:10px;margin-right:10px;"
+			styleClass="rounded-button ui-button-danger" action="/login.xhtml"
+			update="@form" process="@this" />
+	</h:form>
+</h:body>
+</html>

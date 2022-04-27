@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" lang="en">
+
+<h:head>
+
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+	</f:facet>
+	<title>Agenda</title>
+	<ui:insert name="head" />
+</h:head>
+
+<h:body>
+	<div class="layout-wrapper">
+		<ui:include src="./sidebar.xhtml" />
+		<ui:include src="./topbar.xhtml" />
+
+		<div class="layout-content">
+			<ui:insert name="content"></ui:insert>
+		</div>
+
+		<ui:include src="./footer.xhtml" />
+	</div>
+
+	<h:outputStylesheet name="layout/style/layout.css" />
+	<h:outputScript name="layout/script/layout.js" />
+	<p:ajaxStatus onstart="PF('statusDialog').show()"
+		onsuccess="PF('statusDialog').hide()" />
+
+	<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+		closable="false" resizable="false" showHeader="false">
+		<div class="p-text-center">
+			<p:graphicImage height="200px" width="275px"
+				value="./resources/images/loading.gif" />
+		</div>
+	</p:dialog>
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+		responsive="true" width="350">
+		<p:commandButton value="Não" type="button"
+			styleClass="ui-confirmdialog-no ui-button-flat" />
+		<p:commandButton value="Sim" type="button"
+			styleClass="ui-confirmdialog-yes" />
+	</p:confirmDialog>
+</h:body>
+
+</html>

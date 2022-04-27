@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ph="http://primefaces.org/harmony">
+
+	<div class="layout-sidebar">
+		<ul id="layout-menu" class="layout-menu" style="">
+			<li><h:link outcome="/inicio">
+					<i class="pi pi-home" />
+					<span style="font-weight: bold;">Inicio</span>
+				</h:link></li>
+			<li><h:link outcome="/paciente">
+					<i class="pi pi-user-plus" />
+					<span style="font-weight: bold;">Cadastro Paciente</span>
+				</h:link></li>
+				<li><h:link outcome="/medicamento">
+					<i class="pi pi-user-plus" />
+					<span style="font-weight: bold;">Cadastro Medicamento</span>
+				</h:link></li>
+			<li><h:link outcome="/agendamento">
+					<i class="pi pi-calendar-plus" />
+					<span style="font-weight: bold;">Agendamentos</span>
+				</h:link></li>
+			<li><h:link outcome="/relatorio">
+					<i class="pi pi-chart-bar" />
+					<span style="font-weight: bold;">Relatório</span>
+				</h:link></li>
+			<li><h:link outcome="/medico">
+					<i class="pi pi-user-plus" />
+					<span style="font-weight: bold;">Cadastro Medico</span>
+				</h:link></li>
+			<li><h:link outcome="/usuario">
+					<i class="pi pi-user-plus" />
+					<span style="font-weight: bold;">Cadastro Usuario</span>
+				</h:link></li>
+
+		</ul>
+	</div>
+
+</ui:composition>

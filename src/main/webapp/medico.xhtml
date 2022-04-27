@@ -1,0 +1,138 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="head">
+		<style type="text/css">
+.ui-panelgrid.form-elements .ui-grc-2 {
+	padding-left: 60px;
+}
+
+@media ( max-width :1024px) {
+	.ui-panelgrid.form-elements .ui-grc-2 {
+		padding-left: 20px;
+	}
+}
+
+@media ( max-width :640px) {
+	.ui-panelgrid.form-elements .ui-grc-2 {
+		padding-left: 6px;
+	}
+}
+
+.dialogDemo label {
+	line-height: 2.1em;
+}
+</style>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form>
+			<p:growl id="growl" globalOnly="false" />
+			<p:panel id="panel">
+				<f:facet name="header">
+					<div align="center">
+						<h1>Cadastro de Medico</h1>
+					</div>
+				</f:facet>
+				<div class="ui-g ui-fluid">
+					<div class="ui-g-12">
+						<div class="card card-w-title">
+							<p:panelGrid columns="1"
+								styleClass="form-group ui-panelgrid-blank" layout="grid">
+								<p:outputLabel value="Nome: " />
+								<h:panelGroup>
+									<div class="p-col-12 p-md-4">
+										<div class="ui-inputgroup">
+											<p:inputText value="#{medicoController.entity.nome}" />
+											<p:commandButton icon="pi pi-search"
+												styleClass="ui-button-warning" onclick="PF('dlg').show()" />
+										</div>
+									</div>
+								</h:panelGroup>
+
+								<p:outputLabel value="Email: " />
+								<p:inputText value="#{medicoController.entity.email}" />
+
+								<p:outputLabel value="Login: " />
+								<p:inputText value="#{medicoController.entity.login}" />
+
+								<p:outputLabel value="Senha: " />
+								<p:password value="#{medicoController.entity.senha}" />
+
+								<p:outputLabel for="cpf" value="Cpf: " />
+								<p:inputMask id="cpf" value="#{medicoController.entity.cpf}"
+									mask="999.999.999-99" validateMask="true" />
+
+							</p:panelGrid>
+
+
+						</div>
+					</div>
+				</div>
+				<center>
+					<f:facet name="footer">
+
+						<p:commandButton value="Incluir"
+							style="margin-left:10px;margin-right:10px;"
+							actionListener="#{medicoController.incluir}" update="@form"
+							process="@form" disabled="#{clienteController.entity.id != null}" />
+						<p:commandButton value="Alterar"
+							style="margin-left:10px;margin-right:10px;"
+							actionListener="#{medicoController.alterar}" update="@form"
+							process="@form" disabled="#{medicoController.entity.id == null}" />
+						<p:commandButton value="Excluir"
+							style="margin-left:10px;margin-right:10px;"
+							actionListener="#{medicoController.excluir}" process="@this"
+							update="@form" disabled="#{medicoController.entity.id == null}">
+							<p:confirm header="Confirmação"
+								message="Deseja realmente excluir?"
+								icon="pi pi-exclamation-triangle" />
+						</p:commandButton>
+						<p:commandButton value="Limpar"
+							style="margin-left:10px;margin-right:10px;"
+							actionListener="#{medicoController.limpar}" update="@form"
+							process="@this" />
+
+					</f:facet>
+				</center>
+			</p:panel>
+			<p:dialog header="Pesquisa de Medico" widgetVar="dlg" minHeight="100"
+				width="80%" showEffect="fade" modal="true" closeOnEscape="true">
+				<p:panel>
+					<div class="p-grid ui-fluid">
+						<div class="p-col-12 p-md-4">
+							<div class="ui-inputgroup">
+								<p:inputText id="itNomePesquisa"
+									value="#{medicoController.nomePesquisa}"
+									placeholder="Informe um nome ..." />
+								<p:commandButton value="Pesquisar"
+									actionListener="#{medicoController.pesquisar}"
+									process="@this itNomePesquisa" update="dataTable" />
+							</div>
+						</div>
+					</div>
+					<p:dataTable id="dataTable" value="#{medicoController.listaMedico}"
+						var="obj">
+						<p:column headerText="Nome">
+							<p:outputLabel value="#{obj.nome}" />
+						</p:column>
+						
+						<p:column headerText="Login">
+							<p:outputLabel value="#{obj.login}" />
+						</p:column>
+						
+						<p:column headerText="Ação">
+							<p:commandButton value="Editar"
+								actionListener="#{medicoController.editar(obj)}" process="@this"
+								update="@form" />
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>

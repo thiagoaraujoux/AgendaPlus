@@ -1,0 +1,197 @@
+body {
+	font-family: "Open Sans", "Helvetica Neue", sans-serif;
+	color: #333333;
+	font-size: 14px;
+	background-color: #f3f3f3;
+	padding: 0;
+	margin: 0;
+}
+
+body.layout-scroll-block {
+	overflow: hidden;
+}
+
+.layout-wrapper .layout-topbar {
+	background: #343c41;
+	height: 60px;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	z-index: 1000;
+	-webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.16);
+	-moz-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.16);
+	box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.16);
+}
+
+.layout-wrapper .layout-topbar .layout-topbar-content {
+	padding: 10px 20px;
+	position: relative;
+}
+
+.layout-wrapper .layout-topbar .layout-topbar-content .topbar-logo {
+	height: 40px;
+	vertical-align: middle;
+}
+
+.layout-wrapper .layout-topbar .layout-topbar-content .menu-btn {
+	display: none;
+	color: #d8d8d8;
+	font-size: 24px;
+	vertical-align: middle;
+	margin-right: 20px;
+	margin-left: 20px;
+}
+
+.layout-wrapper .layout-topbar .layout-topbar-content .topbar-link {
+	color: #d8d8d8;
+	position: absolute;
+	right: 32px;
+	top: 0;
+	display: block;
+	height: 60px;
+	line-height: 60px;
+	font-size: 16px;
+	padding: 0 16px;
+}
+
+.layout-wrapper .layout-topbar .layout-topbar-content .topbar-link:hover
+	{
+	background-color: #252a2e;
+}
+
+.layout-wrapper .layout-sidebar {
+	position: fixed;
+	left: 0;
+	top: 60px;
+	width: 250px;
+	background-color: #23292e;
+	height: 100%;
+	z-index: 1000;
+	-webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.16);
+	-moz-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.16);
+	box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.16);
+}
+
+.layout-wrapper .layout-sidebar .layout-menu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.layout-wrapper .layout-sidebar .layout-menu li {
+	padding: 1px 0;
+}
+
+.layout-wrapper .layout-sidebar .layout-menu li a {
+	text-decoration: none;
+	display: block;
+	padding: 12px 24px;
+	color: #d8d8d8;
+	background-color: #2a3238;
+	font-size: 16px;
+	border-left: 4px solid transparent;
+}
+
+.layout-wrapper .layout-sidebar .layout-menu li a i {
+	margin-right: 12px;
+	font-size: 24px;
+	vertical-align: middle;
+}
+
+.layout-wrapper .layout-sidebar .layout-menu li a span {
+	vertical-align: middle;
+}
+
+.layout-wrapper .layout-sidebar .layout-menu li a:hover {
+	background-color: #353c43;
+}
+
+.layout-wrapper .layout-sidebar .layout-menu li a.active {
+	background-color: #252a2e;
+	border-left-color: #007ad9;
+}
+
+.layout-wrapper .layout-sidebar .layout-menu li a.active i {
+	color: #007ad9;
+}
+
+.layout-wrapper .layout-content {
+	margin-left: 250px;
+	padding: 84px 24px 24px 24px;
+}
+
+.layout-wrapper .layout-footer {
+	
+	width: 100%;
+	background-color: #343c41;
+	padding: 16px;
+	padding-left: 266px;
+	color: #d8d8d8;
+}
+
+.card {
+	border-radius: 3px;
+	background: #ffffff;
+	padding: 16px;
+	margin-bottom: 16px;
+}
+
+.card.card-w-title {
+	padding-bottom: 16px;
+}
+
+.card.no-gutter {
+	margin-bottom: 0;
+}
+
+.card h1 {
+	font-size: 20px;
+	font-weight: 700;
+	margin: 24px 0 12px 0;
+}
+
+.card h1:first-child {
+	margin-top: 0px;
+}
+
+.card h2 {
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.card h3 {
+	font-size: 16px;
+	font-weight: 700;
+}
+
+.card h4 {
+	font-size: 14px;
+	font-weight: 700;
+}
+
+@media ( max-width : 1024px) {
+	.layout-wrapper .layout-topbar .layout-topbar-content .topbar-logo {
+		height: 28px;
+		margin-top: 6px;
+	}
+	.layout-wrapper .layout-topbar .layout-topbar-content .login {
+		margin-right: 100px;
+		margin-top: 6px;
+	}
+	.layout-wrapper .layout-topbar .layout-topbar-content .menu-btn {
+		display: inline-block;
+	}
+	.layout-wrapper .layout-sidebar {
+		left: -250px;
+	}
+	.layout-wrapper .layout-sidebar.layout-sidebar-active {
+		left: 0;
+		width: 100%;
+	}
+	.layout-wrapper .layout-content {
+		margin-left: 0;
+	}
+}
+
+/*# sourceMappingURL=layout.css.map */

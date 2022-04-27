@@ -1,0 +1,204 @@
+@mixin shadow($value) {
+    -webkit-box-shadow: $value;
+    -moz-box-shadow: $value;
+    box-shadow: $value;
+}
+
+body {
+    font-family: "Open Sans","Helvetica Neue",sans-serif;
+    color: #333333;
+    font-size: 14px;
+    background-color: #f3f3f3;
+    padding: 0;
+    margin: 0;
+
+    &.layout-scroll-block {
+        overflow: hidden;
+    }
+}
+
+.layout-wrapper {
+    .layout-topbar {
+        background: #343c41;
+        height: 60px;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        @include shadow(0 0 16px 0 rgba(0, 0, 0, 0.16));
+
+        .layout-topbar-content {
+            padding: 10px 20px;
+            position: relative;
+
+            .topbar-logo {
+                height: 40px;
+                vertical-align: middle;
+            }
+    		
+            .menu-btn {
+                display: none;
+                color: #d8d8d8;
+                font-size: 24px;
+                vertical-align: middle;
+                margin-right: 20px;
+                margin-left: 20px;
+            }
+    
+    
+            .topbar-link {
+                color: #d8d8d8;
+                position: absolute;
+                right: 32px;
+                top: 0;
+                display: block;
+                height: 60px;
+                line-height: 60px;
+                font-size: 16px;
+                padding: 0 16px;
+
+                &:hover {
+                    background-color: #252a2e;
+                }
+            }
+        }
+    }
+
+    .layout-sidebar {
+        position: fixed;
+        left: 0;
+        top: 60px;
+        width: 250px;
+        background-color: #23292e;
+        height: 100%;
+        z-index: 1000;
+        @include shadow(0 0 16px 0 rgba(0, 0, 0, 0.16));
+
+        .layout-menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            li {
+                padding: 1px 0;
+
+                a {
+                    text-decoration: none;
+                    display: block;
+                    padding: 12px 24px;
+                    color: #d8d8d8;
+                    background-color: #2a3238;
+                    font-size: 16px;
+                    border-left: 4px solid transparent;
+
+                    i {
+                        margin-right: 12px;
+                        font-size: 24px;
+                        vertical-align: middle;
+                    }
+
+                    span {
+                        vertical-align: middle;
+                    }
+
+                    &:hover {
+                        background-color: #353c43;
+                    }
+
+                    &.active{
+                        background-color: #252a2e;
+                        border-left-color: #007ad9;
+                        
+                        i {
+                            color: #007ad9;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .layout-content {
+        margin-left: 250px;
+        padding: 84px 24px 24px 24px;
+    }
+
+    .layout-footer {
+        width: 100%;
+        background-color: #343c41;
+        padding: 16px;
+        padding-left: 266px;
+        color: #d8d8d8;
+    }
+}
+
+.card {
+    border-radius: 3px;
+    background: #ffffff;
+    padding: 16px;
+    margin-bottom: 16px;
+    
+    &.card-w-title {
+        padding-bottom: 16px;
+    }
+    
+    &.no-gutter {
+        margin-bottom: 0;
+    }
+    
+    h1 {
+        font-size: 20px;
+        font-weight: 700;
+        margin: 24px 0 12px 0;
+        
+        &:first-child {
+            margin-top: 0px;
+        }
+    }
+    
+    h2 {
+        font-size: 18px;
+        font-weight: 700;
+    }
+    
+    h3 {
+        font-size: 16px;
+        font-weight: 700;
+    }
+    
+    h4 {
+        font-size: 14px;
+        font-weight: 700;
+    }
+}
+
+@media (max-width: 1024px) {
+    .layout-wrapper {
+        .layout-topbar {
+            .layout-topbar-content {   
+                .topbar-logo {
+                    height: 28px;
+                    margin-top: 6px;
+                }
+
+                .menu-btn {
+                    display: inline-block;
+                }
+            }
+        }
+
+        .layout-sidebar {
+            left: -250px;
+
+            &.layout-sidebar-active {
+                left: 0;
+                width: 100%;
+            }
+        }
+
+        .layout-content {
+            margin-left: 0;
+        }
+    }
+}
