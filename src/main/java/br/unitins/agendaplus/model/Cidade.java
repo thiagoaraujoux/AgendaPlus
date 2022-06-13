@@ -1,6 +1,8 @@
 package br.unitins.agendaplus.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -8,7 +10,7 @@ public class Cidade extends DefaultEntity {
 
 	private String nome;
 
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private Estado estado;
 
 	public String getNome() {

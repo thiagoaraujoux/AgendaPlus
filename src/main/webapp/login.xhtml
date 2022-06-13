@@ -10,7 +10,7 @@
 </h:head>
 <h:body>
 	<h:form class="box">
-
+		
 		<h1>Login</h1>
 
 		<h:inputText value="#{loginController.usuario.login}">
@@ -26,12 +26,25 @@
 		<p:commandButton value="Entrar"
 			style="margin-left:10px;margin-right:10px;"
 			styleClass="rounded-button ui-button-sucess"
-			actionListener="#{loginController.logar()}" update="@form"
+			actionListener="#{loginController.entrar()}" update="@form"
 			process="@this" />
 		<p:commandButton value="Cadastrar-se"
 			style="margin-left:10px;margin-right:10px;"
 			styleClass="rounded-button ui-button-warning"
 			action="/cadastrologin.xhtml" update="@form" process="@this" />
+		<p:commandButton value="Esqueceu a senha?"
+			style="margin-left:10px;margin-right:10px;margin-top:10px;"
+			styleClass="ui-button-danger ui-button-flat"
+			action="/esqueceusenha.xhtml" update="@form" process="@this" />
+
 	</h:form>
+
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script src="js/bootstrap.min.js"></script>
 </h:body>
 </html>

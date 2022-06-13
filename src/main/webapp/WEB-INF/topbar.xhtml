@@ -5,15 +5,23 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<div class="layout-topbar">
+
+		<div>
+			<h:form id="login">
+				<h:outputLabel value="Olá #{templateController.usuarioLogado.nome}"
+					style="color:white; float: right; width: 10%; padding-top: 20px;" />
+				<h:commandLink value=" (Sair)"
+					action="#{templateController.encerrarSessao}"
+					style="color:white; float: right; padding-top: 20px;" />
+			</h:form>
+		</div>
 		<div class="layout-topbar-content">
 			<a href="#" id="menu-btn" class="menu-btn"> <i class="pi pi-bars"></i>
 			</a>
 			<p:graphicImage name="layout/images/logo.png"
 				styleClass="topbar-logo" />
-		
 
 		</div>
-		
 
 	</div>
 

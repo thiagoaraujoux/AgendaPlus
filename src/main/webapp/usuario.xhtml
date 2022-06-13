@@ -31,106 +31,102 @@
 	<ui:define name="content">
 
 		<h:form>
-			<p:growl id="growl" globalOnly="false" />
-			<p:panel id="panel">
-				<f:facet name="header">
-					<div align="center">
-						<h1>Cadastro de Usuário</h1>
-					</div>
-				</f:facet>
-				<div class="ui-g ui-fluid">
-					<div class="ui-g-12">
-						<div class="card card-w-title">
-							<p:panelGrid columns="1"
-								styleClass="form-group ui-panelgrid-blank" layout="grid">
-								<p:outputLabel value="Nome: " />
-								<h:panelGroup>
-									<div class="p-col-12 p-md-4">
-										<div class="ui-inputgroup">
-											<p:inputText value="#{usuarioController.entity.nome}" />
-											<p:commandButton icon="pi pi-search"
-												styleClass="ui-button-warning" onclick="PF('dlg').show()" />
-										</div>
-									</div>
-								</h:panelGroup>
-								
-								<p:outputLabel value="Email: " />
-								<p:inputText value="#{usuarioController.entity.email}" />
-
-								<p:outputLabel value="Login: " />
-								<p:inputText value="#{usuarioController.entity.login}" />
-
-								<p:outputLabel value="Senha: " />
-								<p:password value="#{usuarioController.entity.senha}" />
-
-							</p:panelGrid>
-
-
-						</div>
-					</div>
-				</div>
-				<center>
-					<f:facet name="footer">
-
-						<p:commandButton value="Incluir"
-							style="margin-left:10px;margin-right:10px;"
-							actionListener="#{usuarioController.incluir}" update="@form"
-							process="@form" disabled="#{usuarioController.entity.id != null}" />
-						<p:commandButton value="Alterar"
-							style="margin-left:10px;margin-right:10px;"
-							actionListener="#{usuarioController.alterar}" update="@form"
-							process="@form" disabled="#{usuarioController.entity.id == null}" />
-						<p:commandButton value="Excluir"
-							style="margin-left:10px;margin-right:10px;"
-							actionListener="#{usuarioController.excluir}" process="@this"
-							update="@form" disabled="#{usuarioController.entity.id == null}">
-							<p:confirm header="Confirmação"
-								message="Deseja realmente excluir?"
-								icon="pi pi-exclamation-triangle" />
-						</p:commandButton>
-						<p:commandButton value="Limpar"
-							style="margin-left:10px;margin-right:10px;"
-							actionListener="#{usuarioController.limpar}" update="@form"
-							process="@this" />
-
-					</f:facet>
-				</center>
-			</p:panel>
-			<p:dialog header="Pesquisa de Usuário" widgetVar="dlg"
-				minHeight="100" width="80%" showEffect="fade" modal="true"
-				closeOnEscape="true">
-				<p:panel>
+			<p:growl id="growl" showDetail="true" />
+			<center>
+				<p:panel header="Cadastro de Usuário" style="width:500px;">
 					<div class="p-grid ui-fluid">
-						<div class="p-col-12 p-md-4">
-							<div class="ui-inputgroup">
-								<p:inputText id="itNomePesquisa"
-									value="#{usuarioController.nomePesquisa}"
-									placeholder="Informe um nome ..." />
-								<p:commandButton value="Pesquisar"
-									actionListener="#{usuarioController.pesquisar}"
-									process="@this itNomePesquisa" update="dataTable" />
-							</div>
+
+						<div align="right" style="float: right; position: relative;">
+							<img class="img-responsive"
+								style="max-width: 80px !important; max-height: 80px !important;"
+								src="img-usuario?nome=#{usuarioController.entity.id}.png" />
 						</div>
+
+						<h:panelGrid columns="2">
+							<p:outputLabel value="Nome: " />
+							<h:panelGroup>
+								<div class="p-col-12 p-md-4">
+									<div class="ui-inputgroup">
+										<p:inputText value="#{usuarioController.entity.nome}" />
+										<p:commandButton icon="pi pi-search"
+											styleClass="ui-button-warning"
+											actionListener="#{usuarioController.abrirUsuarioListing}">
+											<p:ajax event="dialogReturn"
+												listener="#{usuarioController.obterUsuarioListing}"
+												update="@form" />
+										</p:commandButton>
+									</div>
+								</div>
+							</h:panelGroup>
+
+							<p:outputLabel value="Email: " />
+							<p:inputText value="#{usuarioController.entity.email}" />
+
+							<p:outputLabel value="Login: " />
+							<p:inputText value="#{usuarioController.entity.login}" />
+
+							<p:outputLabel value="Senha: " />
+							<p:password value="#{usuarioController.entity.senha}" />
+
+							<p:outputLabel value="Imagem:" />
+							<h:form enctype="multipart/form-data">
+								<p:fileUpload id="fileUpload"
+									listener="#{usuarioController.upload}" mode="advanced"
+									update="fileUpload @form" label="Selecione uma foto ..."
+									global="false">
+								</p:fileUpload>
+								<p:growl id="messages" showDetail="true" />
+							</h:form>
+							
+						</h:panelGrid>
 					</div>
-					<p:dataTable id="dataTable"
-						value="#{usuarioController.listaUsuario}" var="obj">
-						<p:column headerText="Nome">
-							<p:outputLabel value="#{obj.nome}" />
-						</p:column>
-						<p:column headerText="Login">
-							<p:outputLabel value="#{obj.login}" />
-						</p:column>
-						<p:column headerText="CPF">
-							<p:outputLabel value="#{obj.cpf}" />
-						</p:column>
-						<p:column headerText="Ação">
-							<p:commandButton value="Editar"
-								actionListener="#{usuarioController.editar(obj)}"
-								process="@this" update="@form" />
-						</p:column>
-					</p:dataTable>
+					<f:facet name="footer">
+						<center>
+							<p:commandButton value="Incluir"
+								style="margin-left:10px;margin-right:10px;"
+								actionListener="#{usuarioController.incluir}" update="@form"
+								process="@form"
+								disabled="#{usuarioController.entity.id != null}" />
+							<p:commandButton value="Alterar"
+								style="margin-left:10px;margin-right:10px;"
+								actionListener="#{usuarioController.alterar}" update="@form"
+								process="@form"
+								disabled="#{usuarioController.entity.id == null}" />
+							<p:commandButton value="Excluir"
+								style="margin-left:10px;margin-right:10px;"
+								actionListener="#{usuarioController.excluir}" process="@this"
+								update="@form" disabled="#{usuarioController.entity.id == null}">
+								<p:confirm header="Confirmação"
+									message="Deseja realmente excluir?"
+									icon="pi pi-exclamation-triangle" />
+							</p:commandButton>
+							<p:commandButton value="Limpar"
+								style="margin-left:10px;margin-right:10px;"
+								actionListener="#{usuarioController.limpar}" update="@form"
+								process="@this" />
+						</center>
+					</f:facet>
 				</p:panel>
-			</p:dialog>
+			</center>
 		</h:form>
+
+		<p:ajaxStatus onstart="PF('statusDialog').show()"
+			onsuccess="PF('statusDialog').hide()" />
+
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+			closable="false" resizable="false" showHeader="false">
+			<div class="p-text-center">
+				<p:graphicImage height="150px" width="200px"
+					value="./resources/images/loading.gif" />
+			</div>
+		</p:dialog>
+
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+			responsive="true" width="350">
+			<p:commandButton value="Não" type="button"
+				styleClass="ui-confirmdialog-no ui-button-flat" />
+			<p:commandButton value="Sim" type="button"
+				styleClass="ui-confirmdialog-yes" />
+		</p:confirmDialog>
 	</ui:define>
 </ui:composition>

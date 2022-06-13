@@ -6,7 +6,12 @@
 	<persistence-unit name="AgendaPlus">
 		<class>br.unitins.agendaplus.model.Cidade</class>
 		<class>br.unitins.agendaplus.model.DefaultEntity</class>
+		<class>br.unitins.agendaplus.model.EsqueceuSenha</class>
 		<class>br.unitins.agendaplus.model.Estado</class>
+		<class>br.unitins.agendaplus.model.Medicamento</class>
+		<class>br.unitins.agendaplus.model.Medico</class>
+		<class>br.unitins.agendaplus.model.Paciente</class>
+		<class>br.unitins.agendaplus.model.PessoaFisica</class>
 		<class>br.unitins.agendaplus.model.Telefone</class>
 		<class>br.unitins.agendaplus.model.Usuario</class>
 

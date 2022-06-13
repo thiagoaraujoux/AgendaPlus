@@ -122,7 +122,8 @@ body.layout-scroll-block {
 }
 
 .layout-wrapper .layout-footer {
-	
+	bottom: 0;
+	position: fixed;
 	width: 100%;
 	background-color: #343c41;
 	padding: 16px;
@@ -176,8 +177,9 @@ body.layout-scroll-block {
 		margin-top: 6px;
 	}
 	.layout-wrapper .layout-topbar .layout-topbar-content .login {
-		margin-right: 100px;
-		margin-top: 6px;
+		display: inline;
+		width: 30%;
+		float: right;
 	}
 	.layout-wrapper .layout-topbar .layout-topbar-content .menu-btn {
 		display: inline-block;
@@ -192,6 +194,7 @@ body.layout-scroll-block {
 	.layout-wrapper .layout-content {
 		margin-left: 0;
 	}
+	
 }
 
 /*# sourceMappingURL=layout.css.map */

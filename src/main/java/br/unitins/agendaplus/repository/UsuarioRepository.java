@@ -3,6 +3,7 @@ package br.unitins.agendaplus.repository;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import br.unitins.agendaplus.application.RepositoryException;
@@ -16,32 +17,22 @@ public class UsuarioRepository extends Repository<Usuario> {
 		super();
 	}
 
-	public Usuario findUsuario(String login, String senha) throws RepositoryException {
-
+	public Usuario validarLogin(Usuario usuario) throws RepositoryException {
 		try {
-			EntityManager em = JPAUtil.getEntityManager();
+			EntityManager em = getEntityManager();
+			// JPQL ou SQL
+			Query query = em.createQuery("SELECT u FROM Usuario u WHERE u.login = :login AND u.senha = :senha");
+			query.setParameter("login", usuario.getLogin());
+			query.setParameter("senha", usuario.getSenha());
 
-			StringBuffer jpql = new StringBuffer();
-			jpql.append("SELECT ");
-			jpql.append("  u ");
-			jpql.append("FROM ");
-			jpql.append("  Usuario u ");
-			jpql.append("WHERE ");
-			jpql.append("  u.login = :login ");
-			jpql.append("  AND u.senha = :senha ");
-
-			Query query = em.createQuery(jpql.toString());
-			query.setParameter("login", login);
-			query.setParameter("senha", senha);
-
-			// Utilizar o single result quando tem certeza de um unico retorno de objetos
-			// O single result gera um excecao quando nao encontra a informacao
 			return (Usuario) query.getSingleResult();
-
-		} catch (Exception e) {
-			System.out.println("Erro ao realizar uma consulta ao banco.");
-			e.printStackTrace();
+		} catch (NoResultException e) {
 			return null;
+		} catch (Exception e) {
+			// mandando pro console o exception gerado
+			e.printStackTrace();
+			// repassando a excecao para quem vai executar o metodo
+			throw new RepositoryException("Problema ao pesquisar usuários.");
 		}
 
 	}
@@ -65,21 +56,54 @@ public class UsuarioRepository extends Repository<Usuario> {
 			e.printStackTrace();
 			throw new RepositoryException("Erro ao executar o findByNome.");
 		}
+
 	}
 
-	public List<Usuario> findAll() throws RepositoryException {
-
+	public Usuario findByIdUsuario(int id) throws RepositoryException {
 		try {
-			EntityManager em = JPAUtil.getEntityManager();
-			Query query = em.createQuery("SELECT u FROM Usuario u ORDER BY u.nome ");
+			StringBuffer jpql = new StringBuffer();
+			jpql.append("SELECT ");
+			jpql.append("  u ");
+			jpql.append("FROM ");
+			jpql.append("  Usuario u ");
+			jpql.append("WHERE ");
+			jpql.append("  u.id = :id ");
 
-			return query.getResultList();
+			Query query = getEntityManager().createQuery(jpql.toString());
+			query.setParameter("id", id);
+
+			return (Usuario) query.getSingleResult();
+		} catch (NoResultException e) {
+			System.out.println(e.getMessage());
+			return null;
+
 		} catch (Exception e) {
-			System.out.println("Erro ao realizar uma consulta ao banco.");
 			e.printStackTrace();
-			throw new RepositoryException("Erro ao realizar uma consulta ao banco.");
+			throw new RepositoryException("Erro ao executar o findByNome.");
 		}
-
 	}
 
+	public Usuario findByEmail(String email) throws RepositoryException {
+		try {
+			StringBuffer jpql = new StringBuffer();
+			jpql.append("SELECT ");
+			jpql.append("  u ");
+			jpql.append("FROM ");
+			jpql.append("  Usuario u ");
+			jpql.append("WHERE ");
+			jpql.append("  u.email = :email ");
+
+			Query query = getEntityManager().createQuery(jpql.toString());
+			query.setParameter("email", email);
+
+			return (Usuario) query.getSingleResult();
+		} catch (NoResultException e) {
+			System.out.println(e.getMessage());
+			return null;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RepositoryException("Erro ao executar o findByNome.");
+		}
+	}
 }

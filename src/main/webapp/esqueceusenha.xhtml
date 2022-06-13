@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<title>AgendaPlus</title>
+	<h:outputStylesheet library="css" name="login.css" />
+</h:head>
+<h:body>
+	<h:form class="box">
+
+		<h:messages infoStyle="color:green" errorStyle="color:red" />
+
+		<h2>Informe o email:</h2>
+
+		<h:inputText value="#{esqueceuSenhaController.email}">
+			<f:passThroughAttribute name="placeholder" value="Insira seu email" />
+		</h:inputText>
+		
+		<p:commandButton value="Enviar"
+			styleClass="rounded-button ui-button-sucess"
+			actionListener="#{esqueceuSenhaController.enviarEmail}" />
+	</h:form>
+</h:body>
+</html>

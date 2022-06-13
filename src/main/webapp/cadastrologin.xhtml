@@ -13,23 +13,23 @@
 
 		<h1>Cadastro</h1>
 
-		<h:inputText value="#{clienteController.entity.nome}">
+		<h:inputText value="#{pacienteController.entity.nome}">
 			<f:passThroughAttribute name="placeholder" value="Insira seu nome" />
 		</h:inputText>
 
-		<h:inputText value="#{clienteController.entity.email}">
+		<h:inputText value="#{pacienteController.entity.email}">
 			<f:passThroughAttribute name="placeholder" value="Insira seu email" />
 		</h:inputText>
 
-		<h:inputText value="#{clienteController.entity.login}">
+		<h:inputText value="#{pacienteController.entity.login}">
 			<f:passThroughAttribute name="placeholder" value="Insira seu login" />
 		</h:inputText>
 
-		<h:inputSecret value="#{clienteController.entity.senha}">
+		<h:inputSecret value="#{pacienteController.entity.senha}">
 			<f:passThroughAttribute name="placeholder" value="Insira sua senha" />
 		</h:inputSecret>
 
-		<p:inputMask value="#{clienteController.entity.cpf}"
+		<p:inputMask value="#{pacienteController.entity.cpf}"
 			mask="999.999.999-99" validateMask="true">
 			<f:passThroughAttribute name="placeholder" value="Insira seu cpf" />
 		</p:inputMask>
@@ -37,18 +37,21 @@
 		<p:commandButton value="Incluir"
 			style="margin-left:10px;margin-right:10px;"
 			styleClass="rounded-button ui-button-success"
-			actionListener="#{clienteController.incluir}" update="@form"
+			actionListener="#{pacienteController.incluir}" update="@form"
 			process="@form" disabled="#{clienteController.entity.id != null}" />
 
 		<p:commandButton value="Limpar"
 			style="margin-left:10px;margin-right:10px;"
 			styleClass="rounded-button ui-button-warning"
-			actionListener="#{clienteController.limpar}" update="@form"
+			actionListener="#{pacienteController.limpar}" update="@form"
 			process="@this" />
 		<p:commandButton value="Voltar"
 			style="margin-left:10px;margin-right:10px;"
 			styleClass="rounded-button ui-button-danger" action="/login.xhtml"
 			update="@form" process="@this" />
+
+		<h:messages infoStyle="color:green" errorStyle="color:red" />
+		
 	</h:form>
 </h:body>
 </html>
