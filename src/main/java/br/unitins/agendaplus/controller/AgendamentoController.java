@@ -63,8 +63,7 @@ public class AgendamentoController extends Controller<Agendamento> implements Se
 
 	public void obterAgendamentoListing(SelectEvent<Agendamento> event) {
 		setEntity(event.getObject());
-		if (getEntity().getMedico() == null)
-			getEntity().setMedico(new Medico());
+		
 	}
 
 	public void abrirMedicoListing() {

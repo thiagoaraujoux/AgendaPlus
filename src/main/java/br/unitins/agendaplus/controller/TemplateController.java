@@ -5,6 +5,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import br.unitins.agendaplus.application.Session;
+import br.unitins.agendaplus.application.Util;
 import br.unitins.agendaplus.model.Usuario;
 
 @Named
@@ -29,8 +30,8 @@ public class TemplateController implements Serializable {
 		this.usuarioLogado = usuarioLogado;
 	}
 	//para encerrar sessão
-	public String encerrarSessao() {
+	public void encerrarSessao() {
 		Session.getInstance().invalidateSession();
-		return "login.xhtml?faces-redirect=true";
+		Util.redirect("/AgendaPlus/faces/login.xhtml");
 	}
 }

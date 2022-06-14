@@ -5,25 +5,25 @@ import javax.inject.Named;
 
 import br.unitins.agendaplus.application.RepositoryException;
 import br.unitins.agendaplus.application.Util;
-import br.unitins.agendaplus.model.Agendamento;
-import br.unitins.agendaplus.repository.AgendamentoRepository;
+import br.unitins.agendaplus.model.Atendimento;
+import br.unitins.agendaplus.repository.AtendimentoRepository;
 
 @Named
 @ViewScoped
-public class AgendamentoListing extends Listing<Agendamento> {
+public class AtendimentoListing extends Listing<Atendimento> {
 
-	private static final long serialVersionUID = -8235200253459121249L;
+	private static final long serialVersionUID = 3655781217619712958L;
 	private String filtro;
 
-	public AgendamentoListing() {
-		super("agendamentolisting", new AgendamentoRepository());
+	public AtendimentoListing() {
+		super("atendimentolisting", new AtendimentoRepository());
 	}
 
 	@Override
 	public void pesquisar() {
-		AgendamentoRepository repo = new AgendamentoRepository();
+		AtendimentoRepository repo = new AtendimentoRepository();
 		try {
-			setList(repo.findByData(filtro));
+			setList(repo.findById(filtro));
 		} catch (RepositoryException e) {
 			e.printStackTrace();
 			Util.addErrorMessage("Problema ao realizar a consulta.");

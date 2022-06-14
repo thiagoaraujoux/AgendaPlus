@@ -33,85 +33,54 @@
 		<h:form>
 			<p:growl id="growl" showDetail="true" />
 			<center>
-				<p:panel header="Agendamento" style="width:500px;">
+				<p:panel header="Atendimento" style="width:500px;">
 					<div class="p-grid ui-fluid">
 						<h:panelGrid columns="2">
-							<p:outputLabel value="Data: " />
+							<p:outputLabel value="Descrição Atendimento: " />
 							<h:panelGroup>
 								<div class="p-col-12 p-md-4">
 									<div class="ui-inputgroup">
 
-										<p:inputMask id="data"
-											value="#{agendamentoController.entity.data}"
-											mask="99/99 às 99:99" validateMask="true" />
+										<p:inputText id="descricaoAtendimento"
+											value="#{atendimentoController.entity.descricaoAtendimento}"/>
 										<p:commandButton icon="pi pi-search"
 											styleClass="ui-button-warning"
-											actionListener="#{agendamentoController.abrirAgendamentoListing}">
+											actionListener="#{atendimentoController.abrirAtendimentoListing}">
 											<p:ajax event="dialogReturn"
-												listener="#{agendamentoController.obterAgendamentoListing}"
+												listener="#{atendimentoController.obterAtendimentoListing}"
 												update="@form" />
 										</p:commandButton>
 									</div>
 								</div>
 							</h:panelGroup>
 
-							<p:outputLabel value="Descrição: " />
-							<p:inputText
-								value="#{agendamentoController.entity.motivoConsulta}" />
-
-							<p:outputLabel value="Justificativa cancelamento: " />
-							<p:inputText
-								value="#{agendamentoController.entity.justificativaCancelamento}"
-								disabled="#{agendamentoController.entity.id == null}" />
-
-							<p:outputLabel value="Medico: " />
-							<p:autoComplete value="#{agendamentoController.entity.medico}"
-								var="medico" itemLabel="#{medico.nome}" itemValue="#{medico}"
-								completeMethod="#{agendamentoController.completeMedico}"
-								forceSelection="true" maxResults="3" dropdown="true"
-								moreText="... mais resultados" scrollHeight="250" />
-
-							<p:outputLabel value="Atendente: " />
-							<p:autoComplete value="#{agendamentoController.entity.atendente}"
-								var="atendente" itemLabel="#{atendente.nome}"
-								itemValue="#{atendente}"
-								completeMethod="#{agendamentoController.completeAtendente}"
-								forceSelection="true" maxResults="3" dropdown="true"
-								moreText="... mais resultados" scrollHeight="250" />
-
-							<p:outputLabel value="Paciente: " />
-							<p:autoComplete value="#{agendamentoController.entity.paciente}"
-								var="paciente" itemLabel="#{paciente.nome}"
-								itemValue="#{paciente}"
-								completeMethod="#{agendamentoController.completePaciente}"
-								forceSelection="true" maxResults="3" dropdown="true"
-								moreText="... mais resultados" scrollHeight="250" />
+						
 						</h:panelGrid>
 					</div>
 					<f:facet name="footer">
 						<center>
 							<p:commandButton value="Incluir"
 								style="margin-left:10px;margin-right:10px;"
-								actionListener="#{agendamentoController.incluir}" update="@form"
+								actionListener="#{atendimentoController.incluir}" update="@form"
 								process="@form"
-								disabled="#{agendamentoController.entity.id != null}" />
+								disabled="#{atendimentoController.entity.id != null}" />
 							<p:commandButton value="Alterar"
 								style="margin-left:10px;margin-right:10px;"
-								actionListener="#{agendamentoController.alterar}" update="@form"
+								actionListener="#{atendimentoController.alterar}" update="@form"
 								process="@form"
-								disabled="#{agendamentoController.entity.id == null}" />
+								disabled="#{atendimentoController.entity.id == null}" />
 							<p:commandButton value="Excluir"
 								style="margin-left:10px;margin-right:10px;"
-								actionListener="#{agendamentoController.excluir}"
+								actionListener="#{atendimentoController.excluir}"
 								process="@this" update="@form"
-								disabled="#{agendamentoController.entity.id == null}">
+								disabled="#{atendimentoController.entity.id == null}">
 								<p:confirm header="Confirmação"
 									message="Deseja realmente excluir?"
 									icon="pi pi-exclamation-triangle" />
 							</p:commandButton>
 							<p:commandButton value="Limpar"
 								style="margin-left:10px;margin-right:10px;"
-								actionListener="#{agendamentoController.limpar}" update="@form"
+								actionListener="#atendimentoController.limpar}" update="@form"
 								process="@this" />
 						
 						</center>

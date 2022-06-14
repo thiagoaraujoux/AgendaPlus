@@ -7,23 +7,24 @@ import br.unitins.agendaplus.application.RepositoryException;
 import br.unitins.agendaplus.application.Util;
 import br.unitins.agendaplus.model.Agendamento;
 import br.unitins.agendaplus.repository.AgendamentoRepository;
+import br.unitins.agendaplus.repository.AgendamentoRepository;
 
 @Named
 @ViewScoped
-public class AgendamentoListing extends Listing<Agendamento> {
+public class AgendamentoListingSQL extends Listing<Agendamento> {
 
 	private static final long serialVersionUID = -8235200253459121249L;
 	private String filtro;
 
-	public AgendamentoListing() {
-		super("agendamentolisting", new AgendamentoRepository());
+	public AgendamentoListingSQL() {
+		super("agendamentolistingsql", new AgendamentoRepository());
 	}
 
 	@Override
 	public void pesquisar() {
 		AgendamentoRepository repo = new AgendamentoRepository();
 		try {
-			setList(repo.findByData(filtro));
+			setList(repo.findByDataSQL(filtro));
 		} catch (RepositoryException e) {
 			e.printStackTrace();
 			Util.addErrorMessage("Problema ao realizar a consulta.");
@@ -37,5 +38,4 @@ public class AgendamentoListing extends Listing<Agendamento> {
 	public void setFiltro(String filtro) {
 		this.filtro = filtro;
 	}
-
 }

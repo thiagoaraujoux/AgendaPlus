@@ -1,12 +1,17 @@
 package br.unitins.agendaplus.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 import org.exolab.castor.types.DateTime;
 
 @Entity
@@ -17,10 +22,10 @@ public class Agendamento extends DefaultEntity<Agendamento> implements Serializa
 	@Column(length = 30)
 	private String data;
 
-	@Column(length = 30)
+	@Column(length = 100)
 	private String motivoConsulta;
 
-	@Column(length = 30)
+	@Column(length = 100)
 	private String justificativaCancelamento;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -35,7 +40,8 @@ public class Agendamento extends DefaultEntity<Agendamento> implements Serializa
 	@JoinColumn(name="id_atendente")
 	private Atendente atendente; 
 
-	
+	@OneToOne(mappedBy="agendamento")
+	private Atendimento atendimento;
 
 	public String getData() {
 		return data;
@@ -83,6 +89,14 @@ public class Agendamento extends DefaultEntity<Agendamento> implements Serializa
 
 	public void setAtendente(Atendente atendente) {
 		this.atendente = atendente;
+	}
+
+	public Atendimento getAtendimento() {
+		return atendimento;
+	}
+
+	public void setAtendimento(Atendimento atendimento) {
+		this.atendimento = atendimento;
 	}
 	
 	

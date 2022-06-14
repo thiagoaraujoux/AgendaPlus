@@ -52,7 +52,6 @@ public abstract class Listing<T extends DefaultEntity> implements Serializable {
 	public List<T> getList() {
 		return list;
 	}
-
 	public void setList(List<T> list2) {
 		this.list = list2;
 	}
