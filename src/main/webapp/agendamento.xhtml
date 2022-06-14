@@ -40,8 +40,9 @@
 							<h:panelGroup>
 								<div class="p-col-12 p-md-4">
 									<div class="ui-inputgroup">
-										<p:datePicker id="data"
-											value="#{agendamentoController.entity.data}" showTime="true" />
+
+										<p:inputMask id="data" value="#{agendamentoController.entity.data}"
+											mask="99/99 às 99:99" validateMask="true" />
 										<p:commandButton icon="pi pi-search"
 											styleClass="ui-button-warning"
 											actionListener="#{agendamentoController.abrirAgendamentoListing}">
@@ -90,11 +91,11 @@
 							<p:commandButton value="Incluir"
 								style="margin-left:10px;margin-right:10px;"
 								actionListener="#{agendamentoController.incluir}" update="@form"
-								process="@form" disabled="#{cidadeController.entity.id != null}" />
+								process="@form" disabled="#{agendamentoController.entity.id != null}" />
 							<p:commandButton value="Alterar"
 								style="margin-left:10px;margin-right:10px;"
 								actionListener="#{agendamentoController.alterar}" update="@form"
-								process="@form" disabled="#{cidadeController.entity.id == null}" />
+								process="@form" disabled="#{agendamentoController.entity.id == null}" />
 							<p:commandButton value="Excluir"
 								style="margin-left:10px;margin-right:10px;"
 								actionListener="#{agendamentoController.excluir}"

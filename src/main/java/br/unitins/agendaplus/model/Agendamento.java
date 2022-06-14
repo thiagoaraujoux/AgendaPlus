@@ -15,7 +15,7 @@ public class Agendamento extends DefaultEntity<Agendamento> implements Serializa
 	private static final long serialVersionUID = -820558590310360029L;
 
 	@Column(length = 30)
-	private DateTime data;
+	private String data;
 
 	@Column(length = 30)
 	private String motivoConsulta;
@@ -37,11 +37,11 @@ public class Agendamento extends DefaultEntity<Agendamento> implements Serializa
 
 	
 
-	public DateTime getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(DateTime data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 

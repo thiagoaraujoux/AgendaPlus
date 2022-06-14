@@ -28,6 +28,15 @@
 				<p:column headerText="Data">
 					<p:outputLabel value="#{obj.data}"/>
 				</p:column>
+				<p:column headerText="Paciente">
+					<p:outputLabel value="#{obj.paciente.nome}"/>
+				</p:column>
+				<p:column headerText="Paciente">
+					<p:outputLabel value="#{obj.medico.nome}"/>
+				</p:column>
+				<p:column headerText="Atendente">
+					<p:outputLabel value="#{obj.atendente.nome}"/>
+				</p:column>
 				
 				<p:column headerText="Ação">
 					<p:commandButton value="Selecionar" 
