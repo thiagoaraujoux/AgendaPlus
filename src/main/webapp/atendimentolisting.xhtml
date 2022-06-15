@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Listagem de Atendimento</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:panel header="Pesquisa de Atendimento">
+			<div class="p-grid ui-fluid">
+				<div class="p-col-12 p-md-4">
+					<div class="ui-inputgroup">
+						<p:inputText id="itNomePesquisa"
+							value="#{atendimentoListing.filtro}"
+							placeholder="Informe um nome ..." />
+						<p:commandButton value="Pesquisar"
+							actionListener="#{atendimentoListing.pesquisar}"
+							process="@this itNomePesquisa" update="dataTable" />
+					</div>
+				</div>
+			</div>
+			<p:dataTable id="dataTable" value="#{atendimentoListing.list}"
+				var="obj">
+				
+				<p:column headerText="Id">
+					<p:outputLabel value="#{obj.id}" />
+				</p:column>
+				<p:column headerText="Descrição Atendimento">
+					<p:outputLabel value="#{obj.descricaoAtendimento}" />
+				</p:column>
+			=
+				<p:column headerText="Ação">
+					<p:commandButton value="Selecionar"
+						actionListener="#{atendimentoListing.select(obj.id)}"
+						process="@this" update="@form" />
+	
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+	</h:form>
+</h:body>
+</html>

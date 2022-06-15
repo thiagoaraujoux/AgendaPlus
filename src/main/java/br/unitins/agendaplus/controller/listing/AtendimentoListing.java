@@ -23,7 +23,7 @@ public class AtendimentoListing extends Listing<Atendimento> {
 	public void pesquisar() {
 		AtendimentoRepository repo = new AtendimentoRepository();
 		try {
-			setList(repo.findById(filtro));
+			setList(repo.findByNome(filtro));
 		} catch (RepositoryException e) {
 			e.printStackTrace();
 			Util.addErrorMessage("Problema ao realizar a consulta.");

@@ -2,12 +2,9 @@ package br.unitins.agendaplus.model;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -19,18 +16,8 @@ public class Atendimento  extends DefaultEntity<Atendimento> implements Serializ
 	private String descricaoAtendimento;
 
 	@OneToOne
-	@JoinColumn(name="id_agendamento", unique=true)
-	private Agendamento agendamento; 
-	
-	
-	
-	public Agendamento getAgendamento() {
-		return agendamento;
-	}
-
-	public void setAgendamento(Agendamento agendamento) {
-		this.agendamento = agendamento;
-	}
+	@JoinColumn(name="id_agendamento")
+	private Agendamento agendamento;
 
 	public String getDescricaoAtendimento() {
 		return descricaoAtendimento;
@@ -40,5 +27,14 @@ public class Atendimento  extends DefaultEntity<Atendimento> implements Serializ
 		this.descricaoAtendimento = descricaoAtendimento;
 	}
 
+	public Agendamento getAgendamento() {
+		return agendamento;
+	}
+
+	public void setAgendamento(Agendamento agendamento) {
+		this.agendamento = agendamento;
+	} 
+	
+	
 	
 }
